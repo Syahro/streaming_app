@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:streaming_app/pages/movie_detail_page.dart';
 import 'package:streaming_app/theme.dart';
 
 class TopMovieCard extends StatelessWidget {
@@ -13,36 +14,48 @@ class TopMovieCard extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(15),
-          child: Image.asset(
-            imageUrl,
-            width: 120,
-            height: 190,
-            fit: BoxFit.cover,
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return MovieDetailPage();
+            },
           ),
-        ),
-        SizedBox(
-          height: 6,
-        ),
-        Text(
-          name,
-          style: boldTextStyle.copyWith(
-            fontSize: 16,
-            color: semiBlackColor,
+        );
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image.asset(
+              imageUrl,
+              width: 120,
+              height: 190,
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        Text(
-          category,
-          style: regularTextStyle.copyWith(
-            fontSize: 14,
-            color: lightGreyColor,
+          SizedBox(
+            height: 6,
           ),
-        ),
-      ],
+          Text(
+            name,
+            style: boldTextStyle.copyWith(
+              fontSize: 16,
+              color: semiBlackColor,
+            ),
+          ),
+          Text(
+            category,
+            style: regularTextStyle.copyWith(
+              fontSize: 14,
+              color: lightGreyColor,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
